@@ -4,7 +4,7 @@ package application;
 import authentication.UserDatabaseController;
 import controllers.*;
 import db.DBManager;
-import post.MyPosts;
+import postCollections.MyPosts;
 import user.User;
 import userInterface.UIHandler;
 

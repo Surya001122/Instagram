@@ -1,6 +1,6 @@
 package controllers;
-import post.MyPosts;
-import posts.Photo;
+import postCollections.MyPosts;
+import post.Photo;
 import user.User;
 
 import java.util.ArrayList;

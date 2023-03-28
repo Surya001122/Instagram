@@ -1,9 +1,9 @@
 package controllers;
-import post.MyPosts;
+import postCollections.MyPosts;
 import postReaction.Comment;
-import postSection.MyCommentSection;
-import posts.Photo;
-import posts.Video;
+import postReactionCollection.PostCommentsSection;
+import post.Photo;
+import post.Video;
 import user.User;
 
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ public class CommentController implements ReactionController {
         MyPosts myPosts = dbManager.getUserPostCollection(toUser);
         if(myPosts!=null) {
             int postId = uiHandler.getPostId();
-            MyCommentSection commentSection = myPosts.getCommentSection(postId);
+            PostCommentsSection commentSection = myPosts.getCommentSection(postId);
             if(commentSection!=null) {
                 Comment comment = new Comment(fromUser, uiHandler.getCommentFromUser());
-                commentSection.add(comment);
+                commentSection.addComment(comment);
                 myPosts.addComment(postId);
                 uiHandler.displayCommentAddedMessage();
             }
@@ -34,11 +34,11 @@ public class CommentController implements ReactionController {
         MyPosts myPosts = dbManager.getUserPostCollection(toUser);
         if(myPosts!=null && (!myPosts.getPhotosCollection().isEmpty() || !myPosts.getVideosCollection().isEmpty())) {
             int postId = uiHandler.getPostId();
-            MyCommentSection commentSection = myPosts.getCommentSection(postId);
+            PostCommentsSection commentSection = myPosts.getCommentSection(postId);
             if (commentSection != null) {
-                Comment comment = commentSection.get(fromUser, uiHandler.getCommentId());
+                Comment comment = commentSection.getComment(fromUser, uiHandler.getCommentId());
                 if (comment != null) {
-                    commentSection.delete(comment);
+                    commentSection.deleteComment(comment);
                     myPosts.removeComment(postId);
                     uiHandler.displayCommentDeletedMessage();
                 }
@@ -57,16 +57,16 @@ public class CommentController implements ReactionController {
                 ArrayList<Photo> photos = new ArrayList<>();
                 photos.add(photo);
                 uiHandler.displayAllPhotos(photos);
-                MyCommentSection commentSection = myPosts.getCommentSection(postId);
-                ArrayList<Comment> comments = commentSection.getPostSection();
+                PostCommentsSection commentSection = myPosts.getCommentSection(postId);
+                ArrayList<Comment> comments = commentSection.getPostComments();
                 uiHandler.displayAllComments(comments);
             }if (video != null) {
                 ArrayList<Video> videos = new ArrayList<>();
 
                 videos.add(video);
                 uiHandler.displayAllVideos(videos);
-                MyCommentSection commentSection = myPosts.getCommentSection(postId);
-                ArrayList<Comment> comments = commentSection.getPostSection();
+                PostCommentsSection commentSection = myPosts.getCommentSection(postId);
+                ArrayList<Comment> comments = commentSection.getPostComments();
                 uiHandler.displayAllComments(comments);
             }
             if(photo==null && video==null){

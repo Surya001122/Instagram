@@ -1,13 +1,19 @@
 package authentication;
 import user.User;
-
 import java.util.ArrayList;
 
 class UserDatabase {
-    protected ArrayList<User> users;
-
-    public UserDatabase() {
+    private static UserDatabase userDatabase = null;
+    private final ArrayList<User> users;
+    private UserDatabase(){
         this.users = new ArrayList<>();
+    }
+
+    static UserDatabase getInstance(){
+        if(userDatabase == null){
+            userDatabase = new UserDatabase();
+        }
+        return userDatabase;
     }
     public boolean isLoginInfoCorrect(String userId,String password){
         for(User user : users) {

@@ -1,6 +1,6 @@
 package db;
 
-import post.MyPosts;
+import postCollections.MyPosts;
 import user.User;
 
 public class DBManager {

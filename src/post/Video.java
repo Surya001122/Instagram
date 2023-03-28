@@ -1,4 +1,4 @@
-package posts;
+package post;
 
 public class Video extends Post{
     private final String videoContent;

@@ -9,7 +9,6 @@ public abstract class PostReaction {
     static int reaction = 1;
     private final int reactionId;
     private final User reactionBy;
-
     private final String reactionTime;
 
     public PostReaction(User reactionBy) {

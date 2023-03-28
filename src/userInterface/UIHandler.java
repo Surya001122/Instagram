@@ -1,8 +1,8 @@
 package userInterface;
 import postReaction.Comment;
 import postReaction.Like;
-import posts.Photo;
-import posts.Video;
+import post.Photo;
+import post.Video;
 import user.User;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class UIHandler {
     public int interactWithUser(){
         Scanner sc = new Scanner(System.in);
-        Boolean bool = false;
+        boolean bool = false;
         int choice = 0;
         while (!bool) {
             System.out.println("\n\n\nEnter 1 to upload a photo\nEnter 2 to delete a photo\nEnter 3 to view your photos\nEnter 4 to upload a video\nEnter 5 to delete a video\nEnter 6 to view your videos\nEnter 7 to view all other users and see their posts\nEnter 8 to logout\nEnter your choice : ");
@@ -27,14 +27,14 @@ public class UIHandler {
     }
     public String interactWithOtherUser(){
         Scanner sc = new Scanner(System.in);
-        String userId = null;
+        String userId;
         System.out.println("\n\n\nEnter the userID to view their posts : ");
         userId = sc.nextLine().trim();
         return userId;
     }
     public int doOperationsForOtherUserPost(){
         Scanner sc = new Scanner(System.in);
-        Boolean bool = false;
+        boolean bool = false;
         int choice = 0;
         while (!bool) {
             System.out.print("\n\n\nEnter 1 to like the post\nEnter 2 to comment for the post\nEnter 3 to remove like for the post\nEnter 4 to remove comment for the post\nEnter 5 to view all likes for the post\nEnter 6 to view all comments for the post\nEnter 7 to go backEnter your choice : ");
@@ -52,20 +52,17 @@ public class UIHandler {
     public String getPostContentFromUser(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nUpload the post : ");
-        String post = sc.nextLine().trim();
-        return post;
+        return sc.nextLine().trim();
     }
     public String getCaptionFromUser(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nUpload the post caption: ");
-        String caption = sc.nextLine().trim();
-        return caption;
+        return sc.nextLine().trim();
     }
     public int getPostId(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the post Id: ");
-        int postId = Integer.parseInt(sc.nextLine().trim());
-        return postId;
+        return Integer.parseInt(sc.nextLine().trim());
     }
     public void displayUsers(ArrayList<User> users){
         if(users.isEmpty()){
@@ -79,8 +76,7 @@ public class UIHandler {
     public String getCommentFromUser(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nType the comment for the post : ");
-        String comment = sc.nextLine().trim();
-        return comment;
+        return sc.nextLine().trim();
     }
     public void displayPostUploadedMessage(){
         System.out.println("\nPost uploaded successfully...");
@@ -126,14 +122,12 @@ public class UIHandler {
     public String getUserId(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter your user Id to login: ");
-        String userId = sc.nextLine().trim();
-        return userId;
+        return sc.nextLine().trim();
     }
     public String getUserPassword(){
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter your user password to login: ");
-        String password = sc.nextLine().trim();
-        return password;
+        return sc.nextLine().trim();
     }
 
     public void displayUserNotLoggedInMessage() {
@@ -148,21 +142,19 @@ public class UIHandler {
     }
     public void displayAllLikes(ArrayList<Like> likes) {
         for(Like like : likes){
-            System.out.println("\nLike Id : "+like.getReactionId()+"\nLiked by : "+like.getReactionBy().getUserName()+"Time : "+like.getReactionTime());
+            System.out.println("\nLike Id : "+like.getReactionId()+"\nLiked by : "+like.getReactionBy().getUserName()+"\nTime : "+like.getReactionTime());
         }
     }
 
     public int getCommentId() {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the comment Id: ");
-        int commentID = Integer.parseInt(sc.nextLine().trim());
-        return commentID;
+        return Integer.parseInt(sc.nextLine().trim());
     }
     public int getLikeId() {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the like Id: ");
-        int likeID = Integer.parseInt(sc.nextLine().trim());
-        return likeID;
+        return Integer.parseInt(sc.nextLine().trim());
     }
 }
 

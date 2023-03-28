@@ -1,6 +1,6 @@
 package controllers;
-import post.MyPosts;
-import posts.Video;
+import postCollections.MyPosts;
+import post.Video;
 import user.User;
 import java.util.ArrayList;
 

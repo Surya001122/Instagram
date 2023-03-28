@@ -1,5 +1,5 @@
 package db;
-import post.MyPosts;
+import postCollections.MyPosts;
 import user.User;
 import java.util.HashMap;
 class Database {

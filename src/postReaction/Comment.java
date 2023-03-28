@@ -7,7 +7,7 @@ public class Comment extends PostReaction {
     private int totalLikes; // not used
     private int totalReplyComments; // not used
     private ArrayList<Like> likesForComment; // not used
-    private ArrayList<Comment> replyComments; // not used
+    private ArrayList<String> replyComments; // not used
 
 
     public Comment(User commentBy, String text) {

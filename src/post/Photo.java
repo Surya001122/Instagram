@@ -1,4 +1,4 @@
-package posts;
+package post;
 
 public class Photo extends Post{
     private final String photoContent;

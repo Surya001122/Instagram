@@ -1,8 +1,8 @@
-package post;
-import postSection.MyCommentSection;
-import postSection.MyLikeSection;
-import posts.Photo;
-import posts.Video;
+package postCollections;
+import postReactionCollection.PostCommentsSection;
+import postReactionCollection.PostLikesSection;
+import post.Photo;
+import post.Video;
 import java.util.ArrayList;
 
 public class MyPosts{
@@ -48,7 +48,7 @@ public class MyPosts{
     public ArrayList<Video> getVideosCollection(){
         return new ArrayList<>(videos);
     }
-    public MyLikeSection getLikeSection(int postId){
+    public PostLikesSection getLikeSection(int postId){
         for(Video video : videos){
             if(video.getPostId() == postId){
                 return video.getMyLikeSection();
@@ -61,7 +61,7 @@ public class MyPosts{
         }
         return null;
     }
-    public MyCommentSection getCommentSection(int postId){
+    public PostCommentsSection getCommentSection(int postId){
         for(Video video : videos){
             if(video.getPostId() == postId){
                 return video.getMyCommentSection();

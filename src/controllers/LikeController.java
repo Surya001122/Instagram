@@ -1,9 +1,9 @@
 package controllers;
-import post.MyPosts;
+import postCollections.MyPosts;
 import postReaction.Like;
-import postSection.MyLikeSection;
-import posts.Photo;
-import posts.Video;
+import postReactionCollection.PostLikesSection;
+import post.Photo;
+import post.Video;
 import user.User;
 
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ public class LikeController implements ReactionController{
         MyPosts myPosts = dbManager.getUserPostCollection(toUser);
         if(myPosts!=null) {
             int postId = uiHandler.getPostId();
-            MyLikeSection likeSection = myPosts.getLikeSection(postId);
+            PostLikesSection likeSection = myPosts.getLikeSection(postId);
             if (likeSection != null) {
                 Like like = new Like(fromUser);
-                likeSection.add(like);
+                likeSection.addLike(like);
                 myPosts.addLike(postId);
                 uiHandler.displayLikeAddedMessage();
             }
@@ -34,11 +34,11 @@ public class LikeController implements ReactionController{
         MyPosts myPosts = dbManager.getUserPostCollection(toUser);
         if(myPosts!=null && (!myPosts.getPhotosCollection().isEmpty() || !myPosts.getVideosCollection().isEmpty())) {
             int postId = uiHandler.getPostId();
-            MyLikeSection likeSection = myPosts.getLikeSection(postId);
+            PostLikesSection likeSection = myPosts.getLikeSection(postId);
             if (likeSection != null) {
-                Like like = likeSection.get(fromUser, uiHandler.getLikeId());
+                Like like = likeSection.getLike(fromUser, uiHandler.getLikeId());
                 if (like != null) {
-                    likeSection.delete(like);
+                    likeSection.deleteLike(like);
                     myPosts.removeLike(postId);
                     uiHandler.displayLikeDeletedMessage();
                 }
@@ -50,7 +50,6 @@ public class LikeController implements ReactionController{
         }
 
     }
-
     @Override
     public void viewReactions(User toUser) {
         MyPosts myPosts = dbManager.getUserPostCollection(toUser);
@@ -62,15 +61,16 @@ public class LikeController implements ReactionController{
                 ArrayList<Photo> photos = new ArrayList<>();
                 photos.add(photo);
                 uiHandler.displayAllPhotos(photos);
-                MyLikeSection likeSection = myPosts.getLikeSection(postId);
-                ArrayList<Like> likes = likeSection.getPostSection();
+                PostLikesSection likeSection = myPosts.getLikeSection(postId);
+                ArrayList<Like> likes = likeSection.getPostLikes();
                 uiHandler.displayAllLikes(likes);
-            }if (video != null) {
+            }
+            if (video != null) {
                 ArrayList<Video> videos = new ArrayList<>();
                 videos.add(video);
                 uiHandler.displayAllVideos(videos);
-                MyLikeSection likeSection = myPosts.getLikeSection(postId);
-                ArrayList<Like> likes = likeSection.getPostSection();
+                PostLikesSection likeSection = myPosts.getLikeSection(postId);
+                ArrayList<Like> likes = likeSection.getPostLikes();
                 uiHandler.displayAllLikes(likes);
             }
             if(photo==null && video==null){

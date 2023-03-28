@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class UserDatabaseController {
     private final UIHandler uiHandler = new UIHandler();
-    private final UserDatabase userDatabase = new UserDatabase();
+    private final UserDatabase userDatabase = UserDatabase.getInstance();
     public User loginUser(){
         String userId = uiHandler.getUserId();
         String password = uiHandler.getUserPassword();

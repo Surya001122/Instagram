@@ -1,6 +1,6 @@
-package posts;
-import postSection.MyCommentSection;
-import postSection.MyLikeSection;
+package post;
+import postReactionCollection.PostCommentsSection;
+import postReactionCollection.PostLikesSection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,8 +9,8 @@ abstract class Post {
     private final int postId;
     private int totalLikes;
     private int totalComments;
-    private final MyCommentSection myComments;
-    private final MyLikeSection myLikes;
+    private final PostCommentsSection myComments;
+    private final PostLikesSection myLikes;
     private final String caption;
     private final String postTime;
 
@@ -18,8 +18,8 @@ abstract class Post {
         this.postId = pId++;
         totalLikes = 0;
         totalComments = 0;
-        myComments = new MyCommentSection();
-        myLikes = new MyLikeSection();
+        myComments = new PostCommentsSection();
+        myLikes = new PostLikesSection();
         this.caption = caption;
         postTime = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
     }
@@ -44,11 +44,11 @@ abstract class Post {
         return postTime;
     }
 
-    public MyCommentSection getMyCommentSection() {
+    public PostCommentsSection getMyCommentSection() {
         return myComments;
     }
 
-    public MyLikeSection getMyLikeSection() {
+    public PostLikesSection getMyLikeSection() {
         return myLikes;
     }
     public void addLikeCount(){
